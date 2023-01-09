@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using WorkplaceReservation.Repository.Context;
+using WorkplaceReservation.Repository.Repositories.EmployeeRepository;
+using WorkplaceReservation.Repository.Repositories.EquipmentForWorkplaceRepository;
+using WorkplaceReservation.Repository.Repositories.EquipmentRepository;
+using WorkplaceReservation.Repository.Repositories.ReservationRepository;
+using WorkplaceReservation.Repository.Repositories.WorkplaceRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<WorkplaceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkplaceConnectionString")));
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
+builder.Services.AddScoped<IWorkplaceRepository, WorkplaceRepository>();
+builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
+builder.Services.AddScoped<IEquipmentForWorkplaceRepository, EquipmentForWorkplaceRepository>();
 
 
 var app = builder.Build();
