@@ -1,4 +1,7 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using WorkplaceReservation.Models;
 using WorkplaceReservation.Repository.Context;
 using WorkplaceReservation.Repository.Repositories.EmployeeRepository;
 using WorkplaceReservation.Repository.Repositories.EquipmentForWorkplaceRepository;
@@ -9,6 +12,7 @@ using WorkplaceReservation.Service.Services.EmployeeService;
 using WorkplaceReservation.Service.Services.EquipmentService;
 using WorkplaceReservation.Service.Services.ReservationService;
 using WorkplaceReservation.Service.Services.WorkplaceService;
+using WorkplaceReservation.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +33,17 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
+
+builder.Services.AddFluentValidationAutoValidation(conf =>
+{   
+    conf.DisableDataAnnotationsValidation = true;
+});
+
+builder.Services.AddScoped<IValidator<EmployeeViewModel>, EmployeeValidator>();
+builder.Services.AddScoped<IValidator<ReservationViewModel>, ReservationValidator>();
+builder.Services.AddScoped<IValidator<WorkplaceViewModel>, WorkplaceValidator>();
+builder.Services.AddScoped<IValidator<EquipmentViewModel>, EquipmentValidator>();
+builder.Services.AddScoped<IValidator<EquipmentForWorkplaceViewModel>, EquipmentForWorkplaceValidator>();
 
 
 var app = builder.Build();
