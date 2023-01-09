@@ -5,6 +5,10 @@ using WorkplaceReservation.Repository.Repositories.EquipmentForWorkplaceReposito
 using WorkplaceReservation.Repository.Repositories.EquipmentRepository;
 using WorkplaceReservation.Repository.Repositories.ReservationRepository;
 using WorkplaceReservation.Repository.Repositories.WorkplaceRepository;
+using WorkplaceReservation.Service.Services.EmployeeService;
+using WorkplaceReservation.Service.Services.EquipmentService;
+using WorkplaceReservation.Service.Services.ReservationService;
+using WorkplaceReservation.Service.Services.WorkplaceService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +17,18 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<WorkplaceDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WorkplaceConnectionString")));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 builder.Services.AddScoped<IWorkplaceRepository, WorkplaceRepository>();
 builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
 builder.Services.AddScoped<IEquipmentForWorkplaceRepository, EquipmentForWorkplaceRepository>();
+
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IWorkplaceService, WorkplaceService>();
+builder.Services.AddScoped<IEquipmentService, EquipmentService>();
 
 
 var app = builder.Build();
