@@ -1,0 +1,40 @@
+﻿@model WorkplaceReservation.Models.WorkplaceViewModel
+
+@{
+    ViewData["Title"] = "Create Workplace";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Workplace.Floor" class="control-label"></label>
+                <input asp-for="Workplace.Floor" class="form-control" />
+                <span asp-validation-for="Workplace.Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Workplace.Room" class="control-label"></label>
+                <input asp-for="Workplace.Room" class="form-control" />
+                <span asp-validation-for="Workplace.Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Workplace.Table" class="control-label"></label>
+                <input asp-for="Workplace.Table" class="form-control" />
+                <span asp-validation-for="Workplace.Table" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Workplaces</a>
+</div>
+

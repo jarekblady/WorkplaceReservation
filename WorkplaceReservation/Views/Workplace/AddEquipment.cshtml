@@ -1,0 +1,42 @@
+﻿@model WorkplaceReservation.Models.EquipmentForWorkplaceViewModel
+
+@{
+    ViewData["Title"] = "Add Equipment For Workplace";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form asp-action="AddEquipment">
+            <div class="form-group">
+                <label asp-for="EquipmentForWorkplace.EquipmentId" class="control-label">Equipment</label>
+                <select asp-for="EquipmentForWorkplace.EquipmentId" class="form-control" asp-items="ViewBag.Equipments">
+                    <option value="" hidden>Select Equipment</option>
+                </select>
+                <span asp-validation-for="EquipmentForWorkplace.EquipmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquipmentForWorkplace.WorkplaceId" class="control-label">Workplace</label>
+                <select asp-for="EquipmentForWorkplace.WorkplaceId" class="form-control" asp-items="ViewBag.Workplaces">
+                    <option value="" hidden>--Select Workplace--</option>
+                </select>
+                <span asp-validation-for="EquipmentForWorkplace.WorkplaceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EquipmentForWorkplace.Count" class="control-label">Count</label>
+                <input asp-for="EquipmentForWorkplace.Count" class="form-control" />
+                <span asp-validation-for="EquipmentForWorkplace.Count" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Workplaces</a>
+</div>

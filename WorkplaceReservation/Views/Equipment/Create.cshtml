@@ -1,0 +1,28 @@
+﻿@model WorkplaceReservation.Models.EquipmentViewModel
+
+@{
+    ViewData["Title"] = "Create Equipment";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Equipment.Type" class="control-label">Type</label>
+                <input asp-for="Equipment.Type" class="form-control" />
+                <span asp-validation-for="Equipment.Type" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Equipments</a>
+</div>

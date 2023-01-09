@@ -1,0 +1,47 @@
+﻿@model WorkplaceReservation.Models.ReservationViewModel
+
+@{
+    ViewData["Title"] = "Create Reservation";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly"></div>
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Reservation.EmployeeId" class="control-label">Employee</label>
+                <select asp-for="Reservation.EmployeeId" class="form-control" asp-items="ViewBag.Employees">
+                    <option value="" hidden>Select Employee</option>
+                </select>
+                <span asp-validation-for="Reservation.EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.WorkplaceId" class="control-label">Workplace</label>
+                <select asp-for="Reservation.WorkplaceId" class="form-control" asp-items="ViewBag.Workplaces">
+                    <option value="" hidden>Select Workplace</option>
+                </select>
+                <span asp-validation-for="Reservation.WorkplaceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.TimeFrom" class="control-label">Time From</label>
+                <input asp-for="Reservation.TimeFrom" class="form-control" />
+                <span asp-validation-for="Reservation.TimeFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reservation.TimeTo" class="control-label">Time To</label>
+                <input asp-for="Reservation.TimeTo" class="form-control" />
+                <span asp-validation-for="Reservation.TimeTo" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Reservations</a>
+</div>
